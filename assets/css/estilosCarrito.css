@@ -1,0 +1,63 @@
+/*Acomodar los elementos de nuestro carrito de compras*/
+.buy-card ul{
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+}
+.lista_de_cursos div{
+    /*display: none;*/
+    text-align: center;
+    padding: 10px 0 0 0;
+    border-top: thin solid var(--text-color-light);
+}
+.cart nav i .buy-card>.lista_de_cursos div{
+    display: flex;
+}
+.lista_de_cursos img{
+    width: 100px;
+}
+.lista_de_cursos p{
+    width: 300px;
+    font-size: 1.3rem;
+}
+.lista_de_cursos p:nth-child(4){
+    padding-left: 40px;
+}
+.lista_de_cursos p:last-child span{
+    background-color: red;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    padding: 5px 10px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.cart nav i .buy-card > button{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    padding: 1rem;
+    margin: 10px auto;
+    background-color: var(--text-color-light);
+    color: #fff;
+
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+/* .cart nav i:hover .buy-card > button {
+    display: block;
+    width: 90%;
+    padding: 1rem;
+    margin: 10px auto;
+    background-color: transparent;
+    border: solid thin black;
+    color:black;
+    cursor: pointer;
+} */
