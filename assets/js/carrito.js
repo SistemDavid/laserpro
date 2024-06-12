@@ -7,9 +7,11 @@ const carrito = document.getElementById("carrito"),
     //div con clase, que contiene el cuerpo que se quiere mostrar
     contenedorCarrito = document.querySelector(".buy-card .lista_de_cursos"),
     //vaciarCarritoBtn: etiqueta button, con id, que se presiona para vaciar el carrito 
-    vaciarCarritoBtn = document.querySelector("#vaciar_carrito");
+    vaciarCarritoBtn = document.querySelector("#vaciar_carrito"),
 
-    //console.log(listaCursos);
+    totalItemsElement = document.querySelector(".cart__prices-item"),
+    totalAmountElement = document.querySelector(".cart__prices-total");
+    
 
 //Variable para almacenar temporalmente los articulos que se enviaran al carrito del html.
 let articulosCarrito = [];
@@ -35,7 +37,7 @@ function registrarEventsListeners() {
     });
 
     //Vaciar el carrito
-    vaciarCarritoBtn.addEventListener('click', e =>{
+    vaciarCarritoBtn.addEventListener('click', ()=>{
         articulosCarrito = [];
         limpiarHTML();
     })
@@ -256,7 +258,7 @@ function leerInfo3(curso) {
 // _____________________________________________________________________________________________________________
 
 //Muestra el carrito en el html
-function carritoHTML() {
+/* function carritoHTML() {
     limpiarHTML();
     //Recorre el carrito de compras y genera el HTML
     articulosCarrito.forEach(curso =>{
@@ -273,7 +275,44 @@ function carritoHTML() {
     });
     //SINCRONIZAR CON LOCALSTORAGE --> PARA NO PERDER LA INFO DEL CARRITO AL RECARGAR LA PAGINA
     sincronizarStorage();
-}
+} */
+
+    function carritoHTML() {
+        limpiarHTML();
+        let totalCantidad = 0;
+        let totalMonto = 0;
+        // Recorre el carrito de compras y genera el HTML
+        articulosCarrito.forEach(curso =>{
+            totalCantidad += curso.cantidad;
+            totalMonto += parseFloat(curso.precio.substring(1)) * curso.cantidad;
+            const fila = document.createElement('div');
+            fila.innerHTML = `
+            <img src="${curso.imagen}"></img>
+            <p>${curso.titulo}</p>
+            <p>${curso.precio}</p>
+            <p>${curso.cantidad}</p>
+            <p><span class="borrar-curso" data-id="${curso.id}">X</span></p>
+            `;
+            // Agregando 'fila', como hijo del div 'lista_de_cursos'.
+            contenedorCarrito.appendChild(fila);
+        });
+
+        //Cuando se presiono el boton vaciar carrito
+        vaciarCarritoBtn.addEventListener("click", () =>{
+             // Actualizar el HTML de la cantidad y el monto total
+            totalItemsElement.textContent = `Cantidad: 0`;
+            totalAmountElement.textContent = `Monto $: 0.00`;
+        })
+        
+    
+        // Actualizar el HTML de la cantidad y el monto total
+        totalItemsElement.textContent = `Cantidad: ${totalCantidad}`;
+        totalAmountElement.textContent = `Monto $: ${totalMonto.toFixed(2)}`;
+    
+        // SINCRONIZAR CON LOCALSTORAGE --> PARA NO PERDER LA INFO DEL CARRITO AL RECARGAR LA PAGINA
+        sincronizarStorage();
+    }
+    
 // ___________________________________________________________________________________________________________
 
 function sincronizarStorage() {
@@ -295,4 +334,3 @@ function limpiarHTML() {
     sincronizarStorage();
 }
 
-console.log(contenedorCarrito);

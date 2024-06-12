@@ -4,11 +4,15 @@
     justify-content: space-around;
     text-transform: uppercase;
 }
+.lista_de_cursos{
+    border-top: thin solid var(--text-color-light);
+}
+
 .lista_de_cursos div{
     /*display: none;*/
     text-align: center;
     padding: 10px 0 0 0;
-    border-top: thin solid var(--text-color-light);
+    /*border-top: thin solid var(--text-color-light);*/
 }
 .cart nav i .buy-card>.lista_de_cursos div{
     display: flex;
@@ -35,6 +39,7 @@
     cursor: pointer;
 }
 
+/*Boton comprar y vaciar carrito*/
 .cart nav i .buy-card > button{
     display: flex;
     flex-direction: row;
@@ -61,3 +66,10 @@
     color:black;
     cursor: pointer;
 } */
+
+/* ARTICULOS ELEGIDOS Y CALCULO DEL MONTO A COMPRAR */
+.cart__prices {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 15px auto;
+}
